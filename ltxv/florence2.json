@@ -1,0 +1,220 @@
+{
+  "last_node_id": 14,
+  "last_link_id": 13,
+  "nodes": [
+    {
+      "id": 12,
+      "type": "Florence2Run",
+      "pos": [
+        550.8360595703125,
+        140.70660400390625
+      ],
+      "size": [
+        400,
+        352
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 11
+        },
+        {
+          "name": "florence2_model",
+          "type": "FL2MODEL",
+          "link": 12
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": null
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": null,
+          "slot_index": 1
+        },
+        {
+          "name": "caption",
+          "type": "STRING",
+          "links": [
+            13
+          ],
+          "slot_index": 2
+        },
+        {
+          "name": "data",
+          "type": "JSON",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Florence2Run"
+      },
+      "widgets_values": [
+        "",
+        "more_detailed_caption",
+        true,
+        false,
+        512,
+        3,
+        true,
+        "",
+        42,
+        "fixed"
+      ]
+    },
+    {
+      "id": 13,
+      "type": "DownloadAndLoadFlorence2Model",
+      "pos": [
+        130.18096923828125,
+        469.77880859375
+      ],
+      "size": [
+        365.4000244140625,
+        106
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "lora",
+          "type": "PEFTLORA",
+          "link": null,
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "florence2_model",
+          "type": "FL2MODEL",
+          "links": [
+            12
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DownloadAndLoadFlorence2Model"
+      },
+      "widgets_values": [
+        "microsoft/Florence-2-large",
+        "fp16",
+        "sdpa"
+      ]
+    },
+    {
+      "id": 11,
+      "type": "easy showAnything",
+      "pos": [
+        994.174560546875,
+        108.97377014160156
+      ],
+      "size": [
+        457.3262939453125,
+        373.93646240234375
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "anything",
+          "type": "*",
+          "link": 13,
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "easy showAnything"
+      },
+      "widgets_values": [
+        "The image is a portrait of a man in a formal attire, holding a small puppy in his arms. The man is wearing a black tuxedo with a white shirt and a red bow tie. He has a serious expression on his face and is looking directly at the camera. The puppy is a light brown color and appears to be a Labrador Retriever. The background is dark and blurred, making the man and the puppy the focal point of the image."
+      ]
+    },
+    {
+      "id": 6,
+      "type": "LoadImage",
+      "pos": [
+        126.34649658203125,
+        63.3434944152832
+      ],
+      "size": [
+        383.8626403808594,
+        343.55963134765625
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            11
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "ComfyUI_temp_tvfzq_00007_.png",
+        "image"
+      ]
+    }
+  ],
+  "links": [
+    [
+      11,
+      6,
+      0,
+      12,
+      0,
+      "IMAGE"
+    ],
+    [
+      12,
+      13,
+      0,
+      12,
+      1,
+      "FL2MODEL"
+    ],
+    [
+      13,
+      12,
+      2,
+      11,
+      0,
+      "*"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ue_links": []
+  },
+  "version": 0.4
+}
